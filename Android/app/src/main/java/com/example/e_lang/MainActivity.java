@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.e_lang.Activity.BidActivity;
+import com.example.e_lang.Activity.ListBarangDilelangActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -32,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(int idView) {
+        Intent intent;
+
         switch (idView) {
             case R.id.button2:
-                Intent intent = new Intent(MainActivity.this, BidActivity.class);
+                intent = new Intent(MainActivity.this, BidActivity.class);
                 startActivity(intent);
                 break;
             case R.id.button3:
+                intent = new Intent(MainActivity.this, ListBarangDilelangActivity.class);
+                startActivity(intent);
                 break;
             case R.id.button4:
                 break;

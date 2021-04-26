@@ -1,8 +1,10 @@
-package com.example.e_lang;
+package com.example.e_lang.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.e_lang.R;
 
 public class BidActivity extends AppCompatActivity {
 
