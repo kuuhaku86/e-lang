@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.e_lang.Activity.BidActivity;
 import com.example.e_lang.Activity.ListBarangDilelangActivity;
+import com.example.e_lang.Activity.PaymentActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.button4:
+                intent = new Intent(MainActivity.this, PaymentActivity.class);
+                startActivity(intent);
                 break;
         }
     }
