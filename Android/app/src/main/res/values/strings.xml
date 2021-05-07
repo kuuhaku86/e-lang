@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">E-Lang</string>
     <string name="background">Background</string>
+    <string name="accountphoto">accountPhoto</string>
+    <string name="unknown">unknown</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="menu_button">menu_button</string>
+    <string name="penawaran_harga">Penawaran Harga</string>
+    <string name="bid">Bid</string>
+    <string name="transaksi_pembayaran">TRANSAKSI PEMBAYARAN</string>
 </resources>
