@@ -1,14 +1,14 @@
 package com.elang.rest.api.repository;
 
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.elang.rest.api.model.Kategori;
+import com.elang.rest.api.model.Pembayaran;
 
 @Repository
-public interface KategoriRepository extends JpaRepository<Kategori, Long>, CrudRepository<Kategori, Long> {
-	Kategori findByNama(String nama);
+public interface PembayaranRepository extends JpaRepository<Pembayaran, Long>, CrudRepository<Pembayaran, Long> {
+	List<Pembayaran> findByStatus(String status);
 }
-

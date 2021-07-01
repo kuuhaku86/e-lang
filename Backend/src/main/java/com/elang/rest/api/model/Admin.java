@@ -5,11 +5,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "admin")
@@ -21,13 +19,10 @@ public class Admin implements Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
 	private Long id;
 	
-	@NotBlank
 	private String password;
 	
-	@NotBlank
 	private String nama;
 	
-	@NotBlank
 	private String email;
 	
 
@@ -40,46 +35,6 @@ public class Admin implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updated_at;
-
-
-	@OneToMany(mappedBy = "admin", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < Barang > barangList;
-	
-	@OneToMany(mappedBy = "admin", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < Users > userList;
-	
-	@OneToMany(mappedBy = "admin", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < Pembayaran > pembayaranList;
-	
-	public List<Barang> getBarangList() {
-		return barangList;
-	}
-
-	public void setBarangList(List<Barang> barangList) {
-		this.barangList = barangList;
-	}
-
-	public List<Users> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<Users> userList) {
-		this.userList = userList;
-	}
-
-	public List<Pembayaran> getPembayaranList() {
-		return pembayaranList;
-	}
-
-	public void setPembayaranList(List<Pembayaran> pembayaranList) {
-		this.pembayaranList = pembayaranList;
-	}
 	
 	public String getEmail(){
 		return email;

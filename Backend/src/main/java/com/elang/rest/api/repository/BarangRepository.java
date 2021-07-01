@@ -12,7 +12,7 @@ import com.elang.rest.api.model.Barang;
 public interface BarangRepository extends JpaRepository<Barang, Long>, CrudRepository<Barang, Long> {
 	List<Barang> findBynama(String nama);
 	List<Barang> findBykategoriList_nama(String nama);
-	
-//	@Query("Select b from Barang b where b.termasuk.kategori = :kategori")
-//    List<Barang> getTermasukList(@Param("kategori") String kategori);
+	List<Barang> findBystatus(String status);
+	List<Barang> findByUserId(Long userId);
+	List<Barang> findByPenawaranBarangList_UserId(Long userId);
 }

@@ -5,8 +5,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,13 +18,17 @@ public class Pembayaran implements Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
 	private Long id;
 		
-	@NotBlank
 	private String status;
 	
-	private String bukti_pembayaran;
+	private String buktiPembayaran;
+
+	private Long userId;
 	
-	@NotNull
-	private java.util.Date deadline;
+	private Long adminId;
+	
+	private Date deadline;
+	
+	private Long penawaranId;
 	
 	@Column(nullable = false, updatable = false)
 	@Temporal (TemporalType.TIMESTAMP)
@@ -38,41 +40,29 @@ public class Pembayaran implements Serializable {
 	@LastModifiedDate
 	private Date updated_at;
 	
-	@OneToOne
-    @MapsId
-    @JoinColumn(name = "penawaranBarang_id")
-    private PenawaranBarang penawaranBarang;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private Users users;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
-	
-	public PenawaranBarang getPenawaranBarang() {
-		return penawaranBarang;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setPenawaranBarang(PenawaranBarang penawaranBarang) {
-		this.penawaranBarang = penawaranBarang;
+	public Long getPenawaranId() {
+		return penawaranId;
 	}
 
-	public Users getUsers() {
-		return users;
+	public void setPenawaranId(Long penawaranId) {
+		this.penawaranId = penawaranId;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public Admin getAdmin() {
-		return admin;
+	public Long getAdminId() {
+		return adminId;
 	}
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
+	public void setAdminId(Long adminId) {
+		this.adminId = adminId;
 	}
 
 	public Long getId() {
@@ -91,12 +81,12 @@ public class Pembayaran implements Serializable {
 		this.status = status;
 	}
 
-	public String getBukti_pembayaran() {
-		return bukti_pembayaran;
+	public String getBuktiPembayaran() {
+		return buktiPembayaran;
 	}
 
-	public void setBukti_pembayaran(String bukti_pembayaran) {
-		this.bukti_pembayaran = bukti_pembayaran;
+	public void setBuktiPembayaran(String buktiPembayaran) {
+		this.buktiPembayaran = buktiPembayaran;
 	}
 
 	public java.util.Date getDeadline() {

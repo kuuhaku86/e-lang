@@ -1,6 +1,5 @@
 package com.elang.rest.api.model;
 
-import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -9,7 +8,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 
 @Entity
@@ -21,27 +19,19 @@ public class Users implements Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
 	private String password;
 	
-	@NotBlank
 	private String nama;
 
-	@NotBlank
 	private String email;
 	
-	@NotBlank
-	private String nomor_telpon;
+	private String nomorTelpon;
 
-	@NotBlank
 	private String alamat;
-
-	private String photo;
 	
-	@NotBlank
 	private String verified;
 	
-	private Date verified_date;
+	private String imageUrl;
 	
 	@Column(nullable = false, updatable = false)
 	@Temporal (TemporalType.TIMESTAMP)
@@ -53,58 +43,16 @@ public class Users implements Serializable {
 	@LastModifiedDate
 	private Date updated_at;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    private long adminId;
 	
-	@OneToMany(mappedBy = "users", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < PenawaranBarang > penawaranBarangList;
+	public Long getAdminId() {
+		return adminId;
+	}
+
+	public void setAdmin(Long adminId) {
+		this.adminId = adminId;
+	}
 	
-	@OneToMany(mappedBy = "users", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < Barang > barangList;
-	
-	@OneToMany(mappedBy = "users", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < Pembayaran > pembayaranList;
-	
-	
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
-	public List<PenawaranBarang> getPenawaranBarangList() {
-		return penawaranBarangList;
-	}
-
-	public void setPenawaranBarangList(List<PenawaranBarang> penawaranBarangList) {
-		this.penawaranBarangList = penawaranBarangList;
-	}
-
-	public List<Barang> getBarangList() {
-		return barangList;
-	}
-
-	public void setBarangList(List<Barang> barangList) {
-		this.barangList = barangList;
-	}
-
-	public List<Pembayaran> getPembayaranList() {
-		return pembayaranList;
-	}
-
-	public void setPembayaranList(List<Pembayaran> pembayaranList) {
-		this.pembayaranList = pembayaranList;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -137,14 +85,6 @@ public class Users implements Serializable {
 		this.email = email;
 	}
 
-	public String getNomor_telpon() {
-		return nomor_telpon;
-	}
-
-	public void setNomor_telpon(String nomor_telpon) {
-		this.nomor_telpon = nomor_telpon;
-	}
-
 	public String getAlamat() {
 		return alamat;
 	}
@@ -153,28 +93,12 @@ public class Users implements Serializable {
 		this.alamat = alamat;
 	}
 
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-
 	public String getVerified() {
 		return verified;
 	}
 
 	public void setVerified(String verified) {
 		this.verified = verified;
-	}
-
-	public Date getVerified_date() {
-		return verified_date;
-	}
-
-	public void setVerified_date(Date verified_date) {
-		this.verified_date = verified_date;
 	}
 
 	public Date getCreated_at() {
@@ -192,4 +116,21 @@ public class Users implements Serializable {
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
 	}
+
+	public String getNomorTelpon() {
+		return nomorTelpon;
+	}
+
+	public void setNomorTelpon(String nomorTelpon) {
+		this.nomorTelpon = nomorTelpon;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}	
+	
 }

@@ -1,68 +1,174 @@
 package com.elang.rest.api.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.elang.rest.api.model.Barang;
 import com.elang.rest.api.model.Kategori;
+import com.elang.rest.api.model.PenawaranBarang;
 import com.elang.rest.api.repository.BarangRepository;
 import com.elang.rest.api.repository.KategoriRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
+@Transactional
 public class BarangService {
 
+	@Autowired
 	BarangRepository barangRepository;
+	@Autowired
 	KategoriRepository kategoriRepository;
 	
-	public BarangService(BarangRepository barangRepository, KategoriRepository kategoriRepository) {
-        this.barangRepository = barangRepository;
-        this.kategoriRepository = kategoriRepository;
-    }
+	@Autowired
+	UserService userService;
+	@Autowired
+	FileService fileService;
 	
+	ObjectMapper objectMapper = new ObjectMapper();
 	
-	@Transactional
-	public Barang createBarang(Barang barang) {
-		Barang newBarang = new Barang();
-        
-        newBarang.setNama(barang.getNama());
-        newBarang.setHarga_awal(barang.getHarga_awal());
-        newBarang.setPhoto(barang.getPhoto());
-        newBarang.setDeskripsi(barang.getDeskripsi());
-        newBarang.setStatus("new");
-        newBarang.setLelang_start(barang.getLelang_start());
-        newBarang.setLelang_finished(barang.getLelang_finished());
-
-        List<Kategori> kategoriList = new ArrayList<>(); 
-        for(Kategori k : barang.getKategoriList()){
-        	Kategori kategori = kategoriRepository.findBynama(k.getNama());
-        	if(kategori == null) 
-        		kategori = kategoriRepository.save(k);
-    		kategoriList.add(kategori);
-    	}
-        newBarang.setKategoriList(kategoriList);        
-        
-        Barang savedBarang = barangRepository.save(newBarang);
-        if (barangRepository.findById(savedBarang.getId()).isPresent())
-            return savedBarang;
-        else
-        	return null;
-	}
-	
-	public List<Barang> findAll() {
-		return barangRepository.findAll();
-	}
-	
-	public Set<Barang> findBykategori(List<String> kategoriList) {
-		Set<Barang> barangSet = new HashSet<Barang>();
-		for(String kategori : kategoriList)
-			barangSet.addAll(barangRepository.findBykategoriList_nama(kategori));
+	public ResponseEntity<?> createBarang(String stringBarang, String stringList, MultipartFile image) {
+		Barang newBarang = stringToBarang(stringBarang);
+		newBarang.setKategoriList( checkKategori( stringToList(stringList) ) );
 				
-		return barangSet;
+		if( !userService.checkUser(newBarang.getUserId()) )
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return saveBarang(newBarang, image);
 	}
+	
+	public ResponseEntity<?> viewBarang(Long id) {
+		if (barangRepository.findById(id).isEmpty())
+			return new ResponseEntity<>(
+					HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<>(
+			barangRepository.getOne(id),
+    		HttpStatus.OK);
+	}
+	
+	public ResponseEntity<?> updateBarang(String stringBarang, String stringList, MultipartFile image){
+		Barang barang = stringToBarang(stringBarang);
+		barang.setKategoriList( checkKategori( stringToList(stringList) ) );
+		
+		if( barangRepository.findById(barang.getId()).isEmpty())
+			return new ResponseEntity<>(
+					HttpStatus.NOT_FOUND);
+		
+		if( barang.getStatus().equals("processed") ) 
+			return new ResponseEntity<>(
+					HttpStatus.BAD_REQUEST);
+		
+		return saveBarang(barang, image);
+		
+	}
+	
+	public ResponseEntity<?> deleteBarang(Long id) {
+		if( barangRepository.findById(id).isEmpty() ) 
+			return new ResponseEntity<>(
+					HttpStatus.NOT_FOUND);
+		
+		if( barangRepository.getOne(id).getStatus().equals("processed") ) 
+			return new ResponseEntity<>(
+					HttpStatus.BAD_REQUEST);
+		barangRepository.deleteById(id);
+		return new ResponseEntity<>(
+				HttpStatus.OK);
+	}
+
+	public ResponseEntity<?> getBarangku(Long id){
+		if( !userService.checkUser(id) )
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<>(
+				barangRepository.findByUserId(id),
+				HttpStatus.OK);
+	}
+	
+	public ResponseEntity<?> getUnverified(){
+		return new ResponseEntity<>(
+				barangRepository.findBystatus("new"),
+				HttpStatus.OK);
+	}
+	
+	public ResponseEntity<?> verifying(Long id){
+		if (barangRepository.findById(id).isEmpty())
+			return new ResponseEntity<>(
+					HttpStatus.NOT_FOUND);
+		
+		Barang barang = barangRepository.getOne(id);
+		barang.setStatus("approved");
+		barangRepository.save(barang);
+		
+		return new ResponseEntity<>(
+				HttpStatus.OK);
+	}
+	
+	
+	
+	/*--------------- Helper Function ------------------------------------------- */
+	
+	private ResponseEntity<?> saveBarang(Barang barang, MultipartFile image) {
+		barang.setStatus("new");
+		barang.setPenawaranBarangList( new ArrayList<PenawaranBarang>() );
+		
+        Barang savedBarang = barangRepository.save(barang);
+        
+        String fileName = "Barang_" + savedBarang.getId() + 
+				image.getOriginalFilename().substring( image.getOriginalFilename().lastIndexOf('.') );
+        savedBarang.setImageUrl( fileService.storeFile(image, fileName) );
+        
+        return new ResponseEntity<>(
+        		barangRepository.save(savedBarang),
+        		HttpStatus.OK);
+	}
+		
+	protected Barang stringToBarang(String string) {
+		try {
+			return objectMapper.readValue(string, Barang.class);
+		}catch(IOException e) {
+			System.out.print(e);
+			return null;
+		}
+	}
+	
+	protected List<String> stringToList(String string) {
+		try {
+			return objectMapper.readValue(string, new TypeReference<List<String>>() {});
+		}catch(IOException e) {
+			System.out.print(e);
+			return null;
+		}		
+	}
+
+	protected List<Kategori> checkKategori(List<String> kategoriList) {
+		List<Kategori> list = new ArrayList<>();
+		
+		if(kategoriList == null)
+			return list;
+		if(kategoriList.isEmpty())
+			return list;
+		
+		for(String k : kategoriList) {
+			Kategori kategori = kategoriRepository.findByNama(k);
+        	if(kategori == null) {
+        		kategori = new Kategori(k);
+        		kategori = kategoriRepository.save( kategori );
+        	}
+        	list.add( kategoriRepository.save(kategori) );
+		}
+		
+		return list;
+		
+	}
+		
 }

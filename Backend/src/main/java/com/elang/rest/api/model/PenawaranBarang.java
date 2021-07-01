@@ -1,6 +1,5 @@
 package com.elang.rest.api.model;
 
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -20,8 +19,9 @@ public class PenawaranBarang implements Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
 	private Long id;
 	
-	@NotNull
-	private double harga;
+	private Long harga;
+
+	private Long userId;
 	
 	@Column(nullable = false, updatable = false)
 	@Temporal (TemporalType.TIMESTAMP)
@@ -32,42 +32,6 @@ public class PenawaranBarang implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updated_at;
-	
-	@OneToOne(mappedBy = "penawaranBarang", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Pembayaran pembayaran;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "barang_id")
-    private Barang barang;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private Users users;
-	
-	public Pembayaran getPembayaran() {
-		return pembayaran;
-	}
-
-	public void setPembayaran(Pembayaran pembayaran) {
-		this.pembayaran = pembayaran;
-	}
-
-	public Barang getBarang() {
-		return barang;
-	}
-
-	public void setBarang(Barang barang) {
-		this.barang = barang;
-	}
-
-	public Users getUsers() {
-		return users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}
 
 	public Long getId() {
 		return id;
@@ -77,12 +41,20 @@ public class PenawaranBarang implements Serializable {
 		this.id = id;
 	}
 
-	public double getHarga() {
+	public Long getHarga() {
 		return harga;
 	}
 
-	public void setHarga(double harga) {
+	public void setHarga(Long harga) {
 		this.harga = harga;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public Date getCreated_at() {
@@ -101,5 +73,4 @@ public class PenawaranBarang implements Serializable {
 		this.updated_at = updated_at;
 	}
 	
-
 }

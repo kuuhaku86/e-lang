@@ -1,7 +1,5 @@
 package com.elang.rest.api.model;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -11,9 +9,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "barang")
@@ -24,29 +20,23 @@ public class Barang implements Serializable {
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
 	private Long id;
-
-	private int penawaran_id;
 	
-	@NotBlank
 	private String nama;
 	
-	@NotNull
-	private int harga_awal;
-
-	@NotBlank
-	private String photo;
+	private Long hargaAwal;
 
 	private String deskripsi;
 	
 	private String status;
 	
-	@NotNull
-	private Date lelang_start;
+	private Date lelangStart;
 	
-	@NotNull
-	private Date lelang_finished;
+	private Date lelangFinished;
 	
-
+	private Long userId;
+	
+	private String imageUrl;
+	
 	@Column(nullable = false, updatable = false)
 	@Temporal (TemporalType.TIMESTAMP)
 	@CreatedDate
@@ -57,44 +47,18 @@ public class Barang implements Serializable {
 	@LastModifiedDate
 	private Date updated_at;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private Users users;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
-			
-	@OneToMany(mappedBy = "barang", cascade = {
-	        CascadeType.ALL
-	    })
-    private List < PenawaranBarang > penawaranBarangList;
-	
 	@ManyToMany(targetEntity = Kategori.class,cascade = CascadeType.ALL )
     private List<Kategori> kategoriList;
 	
-	public Users getUsers() {
-		return users;
+	@ManyToMany(targetEntity = PenawaranBarang.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    private List<PenawaranBarang> penawaranBarangList;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
-	}
-
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
-	public List<PenawaranBarang> getPenawaranBarangList() {
-		return penawaranBarangList;
-	}
-
-	public void setPenawaranBarangList(List<PenawaranBarang> penawaranBarangList) {
-		this.penawaranBarangList = penawaranBarangList;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public Long getId() {
@@ -109,16 +73,16 @@ public class Barang implements Serializable {
 		this.kategoriList = kategoriList;
 	}
 
+	public List<PenawaranBarang> getPenawaranBarangList() {
+		return penawaranBarangList;
+	}
+
+	public void setPenawaranBarangList(List<PenawaranBarang> penawaranBarangList) {
+		this.penawaranBarangList = penawaranBarangList;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getPenawaran_id() {
-		return penawaran_id;
-	}
-
-	public void setPenawaran_id(int penawaran_id) {
-		this.penawaran_id = penawaran_id;
 	}
 
 	public String getStatus() {
@@ -129,20 +93,20 @@ public class Barang implements Serializable {
 		this.status = status;
 	}
 
-	public Date getLelang_start() {
-		return lelang_start;
+	public Date getLelangStart() {
+		return lelangStart;
 	}
 
-	public void setLelang_start(Date lelang_start) {
-		this.lelang_start = lelang_start;
+	public void setLelangStart(Date lelangStart) {
+		this.lelangStart = lelangStart;
 	}
 
-	public Date getLelang_finished() {
-		return lelang_finished;
+	public Date getLelangFinished() {
+		return lelangFinished;
 	}
 
-	public void setLelang_finished(Date lelang_finished) {
-		this.lelang_finished = lelang_finished;
+	public void setLelangFinished(Date lelangFinished) {
+		this.lelangFinished = lelangFinished;
 	}
 
 	public Date getCreated_at() {
@@ -169,20 +133,12 @@ public class Barang implements Serializable {
 		this.nama = nama;
 	}
 
-	public int getHarga_awal() {
-		return harga_awal;
+	public Long getHargaAwal() {
+		return hargaAwal;
 	}
 
-	public void setHarga_awal(int harga_awal) {
-		this.harga_awal = harga_awal;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setHargaAwal(Long hargaAwal) {
+		this.hargaAwal = hargaAwal;
 	}
 
 	public String getDeskripsi() {
@@ -192,6 +148,13 @@ public class Barang implements Serializable {
 	public void setDeskripsi(String deskripsi) {
 		this.deskripsi = deskripsi;
 	}
-	
-		
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 }
