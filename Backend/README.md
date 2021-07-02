@@ -27,7 +27,7 @@ user:{ "nama":String, "password":String, "email":String, "nomorTelpon":String , 
 image:file
 ```
 
-Response OK
+Response OK :
 ```
 {
     "id": Long,
@@ -43,7 +43,7 @@ Response OK
     "adminId": Long
 }
 ```
-Response Bad Request -> Email already used
+Response Bad Request : Email already used
 
 
 ### Login
@@ -57,7 +57,7 @@ email:String
 password:String
 ```
 
-Response OK
+Response OK :
 ```
 {
     "id": Long,
@@ -73,4 +73,4 @@ Response OK
     "adminId": Long
 }
 ```
-Response Not Found -> Email and Password not found
+Response Not Found : Email and Password not found
