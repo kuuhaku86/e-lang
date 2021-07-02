@@ -1,5 +1,7 @@
 package com.example.e_lang.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_lang.Activity.BidActivity;
 import com.example.e_lang.Entity.Barang;
+import com.example.e_lang.MainActivity;
 import com.example.e_lang.R;
 
 import java.util.ArrayList;
@@ -25,7 +29,14 @@ public class ListBarangDilelangAdapter extends RecyclerView.Adapter<ListBarangDi
     @Override
     public ListBarangDilelangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_barang_dilelang_item, parent, false);
-
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, BidActivity.class);
+                context.startActivity(intent);
+            }
+        });
         return new ViewHolder(v);
     }
 
