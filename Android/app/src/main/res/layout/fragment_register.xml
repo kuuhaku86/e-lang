@@ -109,6 +109,21 @@
             android:background="@drawable/et_custom"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textCursorDrawable="@null"
+            android:drawableRight="@drawable/upload"
+            android:drawablePadding="5dp"
+            android:textColor="@android:color/white"
+            android:clickable="true"
+            android:onClick="pick"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/blue"
+            android:gravity="center" />
+
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
