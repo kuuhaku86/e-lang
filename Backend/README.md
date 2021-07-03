@@ -1,7 +1,8 @@
 # E-lang API Documentation
-## How To Use
-
-### Note
+---
+## Note
+---
+### General Object
 ```
 Request -> url
 Requirement -> Data that needed and send to API
@@ -14,8 +15,9 @@ Date -> date format, also use "" -> "2023-03-13T17:59:39.000+00:00"
 List<Object> -> 0 or more object, use [] -> [ object 1, object 2 ] or [ { "atr1":value, "atr2", ... }, {...}, ...] 
 null -> empty, in response -> "Attribute":null
 ```
+
+### User :
 ```
-Object User :
     "id": Long,
     "password": String,
     "nama": String,
@@ -28,8 +30,8 @@ Object User :
     "updated_at": Date,
     "adminId": Long
 ```
+### Barang :
 ```
-Object Barang :
     "id": Long,
     "nama": String,
     "hargaAwal": Long,
@@ -44,21 +46,21 @@ Object Barang :
     "kategoriList": List<Kategori>,
     "penawaranBarangList": List<PenawaranBarang>
 ```
+### Kategori :
 ```
-Object Kategori :
     "id": Long,
     "nama": String
 ```
+### Penawaran Barang :
 ```
-Object Penawaran Barang :
     "id": Long,
     "harga": Long,
     "userId": Long,
     "created_at": Date,
     "updated_at": Date
 ```
+### Pembayaran :
 ```
-Object Pembayaran :
     "id": Long,
     "status": String,
     "buktiPembayaran": String,
@@ -77,9 +79,8 @@ Object Pembayaran :
 
 Request `POST /user/register`
 
-Requirement 
+Body Requirement :
 ```
-Body
     user:{ "nama":String, "password":String, "email":String, "nomorTelpon":String , "alamat":String }
     image:file
 ```
@@ -93,9 +94,8 @@ Response Bad Request : Email already used
 
 Request `POST /user/login`
 
-Requirement 
+Body Requirement :
 ```
-Body
     email:String
     password:String
 ```
@@ -109,9 +109,8 @@ Response Not Found : Email and Password not found
 
 Request `POST /user/update`
 
-Requirement 
+Body Requirement :
 ```
-Body
     user:{ "id":Long, "nama":String, "password":String, "email":String, "nomorTelpon":String , "alamat":String }
     image:file
 ```
@@ -127,9 +126,8 @@ Response Not Found : User ID not found
 
 Request `POST /barang/create`
 
-Requirement 
+Body Requirement :
 ```
-Body
     barang:{ "nama":String,"hargaAwal":Long, "deskripsi":String, "lelangStart":Date, "lelangFinished":Date, "userId":Long }
     image:file
     kategoriList:List<String>
@@ -144,9 +142,8 @@ Response Not Found : User ID not exist
 
 Request `POST /barang/update`
 
-Requirement 
+Body Requirement :
 ```
-Body
     barang:{ "nama":String,"hargaAwal":Long, "deskripsi":String, "lelangStart":Date, "lelangFinished":Date, "userId":Long, "id":Long, "status":String }
     image:file
     kategoriList:List<String>
@@ -163,9 +160,8 @@ Response Bad Request : Barang has been process
 
 Request `GET /barang/view`
 
-Requirement 
+Body Requirement :
 ```
-Body
     barangId:Long
 ```
 
@@ -178,9 +174,8 @@ Response Not Found : Barang Id not exist
 
 Request `GET /barang/mine`
 
-Requirement 
+Body Requirement :
 ```
-Body
     userId:Long
 ```
 
@@ -199,7 +194,7 @@ Response Bad Request : Barang has been process
 
 Request `Get /pelelangan/`
 
-No Requirement 
+No Requirement
 
 Response OK : `List<Barang>`
 
@@ -208,9 +203,8 @@ Response OK : `List<Barang>`
 
 Request `POST /pelelangan/bid`
 
-Requirement :
+Body Requirement :
 ```
-Body
     harga:Long
     userId:Long
     barangId:Long
@@ -227,9 +221,8 @@ Response Not Found : Barang not Exist
 
 Request `Get /pelelangan/bidku`
 
-Requirement :
+Body Requirement :
 ```
-Body
     userId:Long
 ```
 
@@ -246,10 +239,10 @@ Response Not Found : User not Exist
 
 Request `POST /pembayaran/ajukan`
 
-Requirement :
+Body Requirement :
 ```
-pembayaran:{ "userId":Long, "penawaranId":Long }
-file:file
+    pembayaran:{ "userId":Long, "penawaranId":Long }
+    file:file
 ```
 
 Response OK : `Object Pembayaran`
@@ -259,9 +252,8 @@ Response OK : `Object Pembayaran`
 
 Request `GET /pelelangan/mine`
 
-Requirement :
+Body Requirement :
 ```
-Body
     userId:Long
 ```
 
