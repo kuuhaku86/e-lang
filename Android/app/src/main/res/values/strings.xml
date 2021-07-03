@@ -28,4 +28,5 @@
     <string name="id">id</string>
     <string name="email">email</string>
     <string name="alamat">alamat</string>
+    <string name="password_not_same">Password not same</string>
 </resources>
