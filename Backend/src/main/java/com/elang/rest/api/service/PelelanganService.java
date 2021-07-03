@@ -44,7 +44,7 @@ public class PelelanganService {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<>(
-				barangRepository.findBykategoriList_nama("test"),
+				barangRepository.findByPenawaranBarangList_UserId(userId),
 				HttpStatus.OK);
 	}
 	

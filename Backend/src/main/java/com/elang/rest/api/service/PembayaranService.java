@@ -10,11 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.elang.rest.api.model.Barang;
 import com.elang.rest.api.model.Pembayaran;
-import com.elang.rest.api.model.PenawaranBarang;
-import com.elang.rest.api.payload.BidRequest;
-import com.elang.rest.api.repository.BarangRepository;
 import com.elang.rest.api.repository.PembayaranRepository;
 import com.elang.rest.api.repository.PenawaranRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,6 +47,12 @@ public class PembayaranService {
         return new ResponseEntity<>(
         		pembayaranRepository.save(savedPembayaran),
         		HttpStatus.OK);		
+	}
+	
+	public ResponseEntity<?> getPembayaranku(Long userId){
+		return new ResponseEntity<>(
+				pembayaranRepository.findByUserId(userId),
+				HttpStatus.OK);
 	}
 	
 	public ResponseEntity<?> getUnverified(){

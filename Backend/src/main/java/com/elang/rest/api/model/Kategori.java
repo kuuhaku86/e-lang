@@ -10,10 +10,19 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 public class Kategori implements Serializable {
 	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
+	private Long id;
+	
 	private String nama;
 	
 	public Kategori(String nama) {
 		super();
+		this.nama = nama;
+	}
+	
+	public Kategori(Long id, String nama) {
+		super();
+		this.id = id;
 		this.nama = nama;
 	}
 	
@@ -28,5 +37,15 @@ public class Kategori implements Serializable {
 	public void setNama(String nama) {
 		this.nama = nama;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 		
 }

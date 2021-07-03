@@ -258,3 +258,13 @@ Body Requirement :
 ```
 
 Response OK : `List<Pembayaran>`
+
+---
+## Open File
+---
+
+Request `GET URL`
+
+You get the URL from the response that has file
+
+Response OK : `File`
