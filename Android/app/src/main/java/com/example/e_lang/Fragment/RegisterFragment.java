@@ -14,6 +14,7 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -134,15 +135,22 @@ public class RegisterFragment extends Fragment {
                     @Override
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                         if (response.body() != null) {
-                            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                            sharedPref.edit().putString(getString(R.string.nama), response.body().getNama());
-                            sharedPref.edit().putString(getString(R.string.nomorTelpon), response.body().getNomorTelpon());
-                            sharedPref.edit().putString(getString(R.string.password), response.body().getPassword());
-                            sharedPref.edit().putString(getString(R.string.photo_profile), response.body().getImageUrl());
-                            sharedPref.edit().putString(getString(R.string.id), response.body().getId());
-                            sharedPref.edit().putString(getString(R.string.email), response.body().getEmail());
-                            sharedPref.edit().putString(getString(R.string.alamat), response.body().getAlamat());
-                            sharedPref.edit().commit();
+                            SharedPreferences sharedPref = getActivity().getApplicationContext().getSharedPreferences("sf", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString(getString(R.string.nama), response.body().getNama());
+                            editor.commit();
+                            editor.putString(getString(R.string.nomorTelpon), response.body().getNomorTelpon());
+                            editor.commit();
+                            editor.putString(getString(R.string.password), response.body().getPassword());
+                            editor.commit();
+                            editor.putString(getString(R.string.photo_profile), response.body().getImageUrl());
+                            editor.commit();
+                            editor.putString(getString(R.string.id), response.body().getId());
+                            editor.commit();
+                            editor.putString(getString(R.string.email), response.body().getEmail());
+                            editor.commit();
+                            editor.putString(getString(R.string.alamat), response.body().getAlamat());
+                            editor.commit();
 
                             Toast.makeText(getActivity(), "Register Success", Toast.LENGTH_SHORT).show();
 
