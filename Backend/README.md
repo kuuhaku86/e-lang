@@ -12,6 +12,7 @@ Long -> number only ->id:13
 file -> upload a file
 Date -> date format, also use "" -> "2023-03-13T17:59:39.000+00:00"
 List<String> -> 0 or more string, use [] -> [ "String 1", "String 2" ]
+null -> empty, in response -> "Attribute":null
 ```
 
 ---
@@ -99,7 +100,7 @@ Response OK :
     "alamat": String,
     "verified": String,
     "imageUrl": String,
-    "created_at": Date,
+    "created_at": NULL,
     "updated_at": Date,
     "adminId": Long
 }
