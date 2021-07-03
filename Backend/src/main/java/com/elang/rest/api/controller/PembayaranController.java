@@ -24,6 +24,11 @@ public class PembayaranController {
 		return pembayaranService.bayarBarang(pembayaran, file);
 	}
 	
+	@GetMapping("/mine")
+	public ResponseEntity<?> getBarangBidku(Long userId){
+		return pembayaranService.getPembayaranku(userId);
+	}
+	
 	// lihat semua barang yang belum diverif (oleh admin)
 	@GetMapping("/unverified")
 	public ResponseEntity<?> getUnverified(){

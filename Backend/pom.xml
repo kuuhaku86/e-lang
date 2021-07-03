@@ -71,7 +71,7 @@
 		      <configuration>
 		        <archive>
 		          <manifest>
-		            <mainClass>fully.qualified.MainClass</mainClass>
+		            <mainClass>com.elang.rest.api.ApiApplication</mainClass>
 		          </manifest>
 		        </archive>
 		        <descriptorRefs>

@@ -108,7 +108,7 @@ public class UserService {
 		
 		String fileName = "User_" + savedUser.getId() + 
 				image.getOriginalFilename().substring( image.getOriginalFilename().lastIndexOf('.') );
-        user.setImageUrl( fileRepositoy.storeFile(image, fileName) );
+        savedUser.setImageUrl( fileRepositoy.storeFile(image, fileName) );
         
         return new ResponseEntity<>(
         		userRepository.save(savedUser),

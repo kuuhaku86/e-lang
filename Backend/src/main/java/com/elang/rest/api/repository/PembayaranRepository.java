@@ -11,4 +11,5 @@ import com.elang.rest.api.model.Pembayaran;
 @Repository
 public interface PembayaranRepository extends JpaRepository<Pembayaran, Long>, CrudRepository<Pembayaran, Long> {
 	List<Pembayaran> findByStatus(String status);
+	List<Pembayaran> findByUserId(Long userId);
 }
