@@ -22,4 +22,10 @@
     <string name="phone_number">Phone Number</string>
     <string name="address">Address</string>
     <string name="input_not_full">Input Tidak Lengkap</string>
+    <string name="nama">nama</string>
+    <string name="nomorTelpon">nomorTelpon</string>
+    <string name="photo_profile">photo-profile</string>
+    <string name="id">id</string>
+    <string name="email">email</string>
+    <string name="alamat">alamat</string>
 </resources>

@@ -1,9 +1,14 @@
 package com.example.e_lang.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.e_lang.DataSource.RemoteDataSource;
 import com.example.e_lang.DataSource.Response.UserResponse;
+import com.example.e_lang.MainActivity;
 import com.example.e_lang.R;
 
 import retrofit2.Call;
@@ -43,7 +49,7 @@ public class LoginFragment extends Fragment {
                 String password_text = password.getText().toString();
 
                 if (email_text.length() == 0 || password_text.length() == 0) {
-                    Toast toast = Toast.makeText(getActivity(), R.string.input_not_full, Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity(), R.string.input_not_full, Toast.LENGTH_SHORT).show();
 
                     return;
                 }
@@ -52,12 +58,30 @@ public class LoginFragment extends Fragment {
                 call.enqueue(new Callback<UserResponse>() {
                     @Override
                     public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                        Toast.makeText(getActivity(), response.body().toString(), Toast.LENGTH_SHORT);
+                        if (response.body() != null) {
+                            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                            sharedPref.edit().putString(getString(R.string.nama), response.body().getNama());
+                            sharedPref.edit().putString(getString(R.string.nomorTelpon), response.body().getNomorTelpon());
+                            sharedPref.edit().putString(getString(R.string.password), response.body().getPassword());
+                            sharedPref.edit().putString(getString(R.string.photo_profile), response.body().getImageUrl());
+                            sharedPref.edit().putString(getString(R.string.id), response.body().getId());
+                            sharedPref.edit().putString(getString(R.string.email), response.body().getEmail());
+                            sharedPref.edit().putString(getString(R.string.alamat), response.body().getAlamat());
+                            sharedPref.edit().commit();
+
+                            Toast.makeText(getActivity(), "Login Success", Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+                            startActivity(i);
+                            ((Activity) getActivity()).overridePendingTransition(0, 0);
+                        } else {
+                            Toast.makeText(getActivity(), "Login Failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<UserResponse> call, Throwable t) {
-                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT);
+                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
