@@ -46,15 +46,7 @@ null -> empty, in response -> "Attribute":null
     "imageUrl": String,
     "created_at": Date,
     "updated_at": Date,
-    "kategoriList": List<Kategori>,
     "penawaranBarangList": List<PenawaranBarang>
-}
-```
-### Kategori :
-```
-{
-    "id": Long,
-    "nama": String
 }
 ```
 ### Penawaran Barang :
@@ -140,7 +132,6 @@ Body Requirement :
 ```
     barang:{ "nama":String,"hargaAwal":Long, "deskripsi":String, "lelangStart":Date, "lelangFinished":Date, "userId":Long }
     image:file
-    kategoriList:List<String>
 ```
 
 Response OK : `Object Barang`
@@ -156,7 +147,6 @@ Body Requirement :
 ```
     barang:{ "nama":String,"hargaAwal":Long, "deskripsi":String, "lelangStart":Date, "lelangFinished":Date, "userId":Long, "id":Long, "status":String }
     image:file
-    kategoriList:List<String>
 ```
 
 Response OK : `Object Barang`
