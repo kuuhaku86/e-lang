@@ -29,4 +29,11 @@
     <string name="email">email</string>
     <string name="alamat">alamat</string>
     <string name="password_not_same">Password not same</string>
+    <string name="pengajuan_pelelangan">Pengajuan Pelelangan</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="harga_awal">Harga Awal</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="mulai_lelang">Mulai Lelang</string>
+    <string name="akhir_lelang">Akhir Lelang</string>
+    <string name="ajukan">Ajukan</string>
 </resources>

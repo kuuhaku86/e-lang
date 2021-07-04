@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.e_lang.Activity.AjukanPelelanganActivity;
 import com.example.e_lang.Activity.BidActivity;
 import com.example.e_lang.Activity.ListBarangDilelangActivity;
 import com.example.e_lang.Activity.PaymentActivity;
@@ -42,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 .into(contact);
 
         int[] arrayId = {
-                R.id.button2,
-                R.id.button3,
-                R.id.button4,
+                R.id.pelelangan_saya,
+                R.id.barang_dilelang,
+                R.id.penawaran_saya,
+                R.id.ajukan_pelelangan,
         };
 
         for (int id: arrayId) {
@@ -59,21 +61,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(int idView) {
-        Intent intent;
-
         switch (idView) {
-            case R.id.button2:
-                intent = new Intent(MainActivity.this, BidActivity.class);
-                startActivity(intent);
+            case R.id.pelelangan_saya:
                 break;
-            case R.id.button3:
-                intent = new Intent(MainActivity.this, ListBarangDilelangActivity.class);
-                startActivity(intent);
+
+            case R.id.barang_dilelang:
                 break;
-            case R.id.button4:
-                intent = new Intent(MainActivity.this, PaymentActivity.class);
-                startActivity(intent);
+
+            case R.id.penawaran_saya:
+                break;
+
+            case R.id.ajukan_pelelangan:
+                this.ajukanPelelangan();
                 break;
         }
+    }
+
+    private void ajukanPelelangan() {
+        Intent intent = new Intent(getApplicationContext(), AjukanPelelanganActivity.class);
+        startActivity(intent);
     }
 }

@@ -68,7 +68,6 @@ public class LoginFragment extends Fragment {
                             editor.putString(getString(R.string.password), response.body().getPassword());
                             editor.commit();
                             editor.putString(getString(R.string.photo_profile), response.body().getImageUrl());
-                            Toast.makeText(getActivity(), response.body().getImageUrl(), Toast.LENGTH_SHORT).show();
                             editor.commit();
                             editor.putString(getString(R.string.id), response.body().getId());
                             editor.commit();

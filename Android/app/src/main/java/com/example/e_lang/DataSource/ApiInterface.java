@@ -1,6 +1,7 @@
 package com.example.e_lang.DataSource;
 
 import com.example.e_lang.DataSource.Request.RegisterRequest;
+import com.example.e_lang.DataSource.Response.BarangResponse;
 import com.example.e_lang.DataSource.Response.UserResponse;
 
 import okhttp3.MultipartBody;
@@ -20,4 +21,8 @@ public interface ApiInterface {
     @Multipart
     @POST("user/register")
     Call<UserResponse> register(@Part("user") RequestBody user, @Part MultipartBody.Part image);
+
+    @Multipart
+    @POST("barang/create")
+    Call<BarangResponse> createBarang(@Part("barang") RequestBody barang, @Part MultipartBody.Part image);
 }

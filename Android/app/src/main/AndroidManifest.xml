@@ -3,7 +3,7 @@
     package="com.example.e_lang">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ELang"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.AjukanPelelanganActivity"></activity>
         <activity android:name=".Activity.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity2" />
         <activity android:name=".Activity.PaymentActivity" />
         <activity android:name=".Activity.ListBarangDilelangActivity" />
         <activity android:name=".Activity.BidActivity" />
