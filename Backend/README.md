@@ -18,6 +18,7 @@ null -> empty, in response -> "Attribute":null
 
 ### User :
 ```
+{
     "id": Long,
     "password": String,
     "nama": String,
@@ -29,9 +30,11 @@ null -> empty, in response -> "Attribute":null
     "created_at": Date,
     "updated_at": Date,
     "adminId": Long
+}
 ```
 ### Barang :
 ```
+{
     "id": Long,
     "nama": String,
     "hargaAwal": Long,
@@ -45,22 +48,28 @@ null -> empty, in response -> "Attribute":null
     "updated_at": Date,
     "kategoriList": List<Kategori>,
     "penawaranBarangList": List<PenawaranBarang>
+}
 ```
 ### Kategori :
 ```
+{
     "id": Long,
     "nama": String
+}
 ```
 ### Penawaran Barang :
 ```
+{
     "id": Long,
     "harga": Long,
     "userId": Long,
     "created_at": Date,
     "updated_at": Date
+}
 ```
 ### Pembayaran :
 ```
+{
     "id": Long,
     "status": String,
     "buktiPembayaran": String,
@@ -70,6 +79,7 @@ null -> empty, in response -> "Attribute":null
     "penawaranId": Long,
     "created_at": Date,
     "updated_at": Date
+}
 ```
 
 ---
