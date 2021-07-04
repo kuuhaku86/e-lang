@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +31,10 @@ import com.example.e_lang.R;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -74,9 +78,15 @@ public class AjukanPelelanganActivity extends AppCompatActivity {
                 DatePickerDialog mdiDialog =new DatePickerDialog(AjukanPelelanganActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        lelangStart.setText(String.format("%d-%d-%d", year, monthOfYear, dayOfMonth));
+                        Date date = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime();
+                        String pattern = "yyyy-MM-dd";
+
+                        DateFormat df = new SimpleDateFormat(pattern);
+                        String date_string = df.format(date);
+
+                        lelangStart.setText(date_string);
                     }
-                }, 2021, 7, 9);
+                }, 2021, 6, 9);
                 mdiDialog.show();
             }
         });
@@ -87,9 +97,15 @@ public class AjukanPelelanganActivity extends AppCompatActivity {
                 DatePickerDialog mdiDialog =new DatePickerDialog(AjukanPelelanganActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        lelangFinished.setText(String.format("%d-%d-%d", year, monthOfYear, dayOfMonth));
+                        Date date = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime();
+                        String pattern = "yyyy-MM-dd";
+
+                        DateFormat df = new SimpleDateFormat(pattern);
+                        String date_string = df.format(date);
+
+                        lelangFinished.setText(date_string);
                     }
-                }, 2021, 7, 9);
+                }, 2021, 6, 9);
                 mdiDialog.show();
             }
         });
@@ -116,7 +132,7 @@ public class AjukanPelelanganActivity extends AppCompatActivity {
                     return;
                 }
 
-                String barang = String.format("{ \"nama\":\"%s\",\"hargaAwal\":%d, \"deskripsi\":\"%s\", \"lelangStart\":%s, \"lelangFinished\":%s, \"userId\":%s }",
+                String barang = String.format("{ \"nama\":\"%s\",\"hargaAwal\":%d, \"deskripsi\":\"%s\", \"lelangStart\":\"%s\", \"lelangFinished\":\"%s\", \"userId\":%s }",
                         name_text,
                         hargaAwal_int,
                         deskripsi_text,
@@ -136,17 +152,22 @@ public class AjukanPelelanganActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<BarangResponse> call, Response<BarangResponse> response) {
                         if (response.body() != null) {
-                            Toast.makeText(AjukanPelelanganActivity.this, "Tambah Pelelangan Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Tambah Pelelangan Success", Toast.LENGTH_SHORT).show();
 
-                            finish();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AjukanPelelanganActivity.this.finish();
+                                }
+                            }, 2000);
                         } else {
-                            Toast.makeText(AjukanPelelanganActivity.this, "Tambah Pelelangan Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Tambah Pelelangan Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<BarangResponse> call, Throwable t) {
-                        Toast.makeText(AjukanPelelanganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
