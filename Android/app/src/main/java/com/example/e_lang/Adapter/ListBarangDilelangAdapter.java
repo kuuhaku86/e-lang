@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.BidActivity;
 import com.example.e_lang.Entity.Barang;
 import com.example.e_lang.MainActivity;
@@ -56,11 +59,13 @@ public class ListBarangDilelangAdapter extends RecyclerView.Adapter<ListBarangDi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView listBarangName, listBarangTanggal;
+        public ImageView picture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             listBarangName = itemView.findViewById(R.id.listBarangDilelangNama);
             listBarangTanggal = itemView.findViewById(R.id.listBarangDilelangTanggal);
+            picture = itemView.findViewById(R.id.picture);
         }
     }
 }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.AjukanPelelanganActivity;
+import com.example.e_lang.Activity.AllBarangkuActivity;
 import com.example.e_lang.Activity.BidActivity;
 import com.example.e_lang.Activity.ListBarangDilelangActivity;
 import com.example.e_lang.Activity.PaymentActivity;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(int idView) {
         switch (idView) {
             case R.id.pelelangan_saya:
+                this.allBarangku();
                 break;
 
             case R.id.barang_dilelang:
@@ -79,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void ajukanPelelangan() {
         Intent intent = new Intent(getApplicationContext(), AjukanPelelanganActivity.class);
+        startActivity(intent);
+    }
+
+    private void allBarangku() {
+        Intent intent = new Intent(getApplicationContext(), AllBarangkuActivity.class);
         startActivity(intent);
     }
 }

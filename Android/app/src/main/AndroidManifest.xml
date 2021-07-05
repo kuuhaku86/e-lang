@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ELang"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.AjukanPelelanganActivity"></activity>
+        <activity android:name=".Activity.DetailBarangkuActivity"></activity>
+        <activity android:name=".Activity.AllBarangkuActivity" />
+        <activity android:name=".Activity.AjukanPelelanganActivity" />
         <activity android:name=".Activity.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

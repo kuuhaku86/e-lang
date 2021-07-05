@@ -4,14 +4,18 @@ import com.example.e_lang.DataSource.Request.RegisterRequest;
 import com.example.e_lang.DataSource.Response.BarangResponse;
 import com.example.e_lang.DataSource.Response.UserResponse;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
     @FormUrlEncoded
@@ -25,4 +29,7 @@ public interface ApiInterface {
     @Multipart
     @POST("barang/create")
     Call<BarangResponse> createBarang(@Part("barang") RequestBody barang, @Part MultipartBody.Part image);
+
+    @GET("barang/mine")
+    Call<List<BarangResponse>> getAllBarangku(@Query("userId") String id);
 }
