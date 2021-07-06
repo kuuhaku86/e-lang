@@ -1,10 +1,14 @@
 package com.example.e_lang.DataSource.Response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BarangResponse{
+public class BarangResponse implements Serializable {
 
 	@SerializedName("nama")
 	private String nama;
@@ -155,5 +159,5 @@ public class BarangResponse{
 			",status = '" + status + '\'' + 
 			",lelangFinished = '" + lelangFinished + '\'' + 
 			"}";
-		}
+	}
 }

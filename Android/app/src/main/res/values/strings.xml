@@ -22,7 +22,7 @@
     <string name="phone_number">Phone Number</string>
     <string name="address">Address</string>
     <string name="input_not_full">Input Tidak Lengkap</string>
-    <string name="nama">nama</string>
+    <string name="nama">Nama</string>
     <string name="nomorTelpon">nomorTelpon</string>
     <string name="photo_profile">photo-profile</string>
     <string name="id">id</string>
@@ -36,4 +36,7 @@
     <string name="mulai_lelang">Mulai Lelang</string>
     <string name="akhir_lelang">Akhir Lelang</string>
     <string name="ajukan">Ajukan</string>
+    <string name="detail_barangku">Detail Barangku</string>
+    <string name="status">Status</string>
+    <string name="harga">Harga</string>
 </resources>

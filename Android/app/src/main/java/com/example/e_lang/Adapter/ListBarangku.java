@@ -2,6 +2,7 @@ package com.example.e_lang.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.BidActivity;
+import com.example.e_lang.Activity.DetailBarangkuActivity;
 import com.example.e_lang.DataSource.Response.BarangResponse;
 import com.example.e_lang.Entity.Barang;
 import com.example.e_lang.R;
@@ -64,7 +66,8 @@ public class ListBarangku extends RecyclerView.Adapter<ListBarangku.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, BidActivity.class);
+                Intent intent = new Intent(context, DetailBarangkuActivity.class);
+                intent.putExtra("barang", barang);
                 context.startActivity(intent);
             }
         });
