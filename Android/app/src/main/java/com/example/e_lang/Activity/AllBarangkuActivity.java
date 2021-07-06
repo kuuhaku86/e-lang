@@ -41,15 +41,15 @@ public class AllBarangkuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_barangku);
 
         dataset = new ArrayList<>();
+        progressBar = findViewById(R.id.progressBar2);
         initDataset();
 
-        progressBar = findViewById(R.id.progressBar2);
         rvView = (RecyclerView) findViewById(R.id.rv);
 
-        progressBar.setVisibility(View.VISIBLE);
     }
 
     private void initDataset() {
+        progressBar.setVisibility(View.VISIBLE);
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("sf", Context.MODE_PRIVATE);
         String id_text = sharedPref.getString(getString(R.string.id), "-");
         Call<List<BarangResponse>> call = RemoteDataSource.apiService.getAllBarangku(id_text);

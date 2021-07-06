@@ -4,22 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.e_lang.Adapter.ListBarangDilelangAdapter;
-import com.example.e_lang.Entity.Barang;
+import com.example.e_lang.Adapter.ListBarangku;
+import com.example.e_lang.DataSource.RemoteDataSource;
+import com.example.e_lang.DataSource.Response.BarangResponse;
 import com.example.e_lang.R;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListBarangDilelangActivity extends AppCompatActivity {
     private RecyclerView rvView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-    private ArrayList<Barang> dataset;
+    private ArrayList<BarangResponse> dataset;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,25 +37,39 @@ public class ListBarangDilelangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_barang_dilelang);
 
         dataset = new ArrayList<>();
+        progressBar = findViewById(R.id.progressBar2);
         initDataset();
 
-        rvView = (RecyclerView) findViewById(R.id.rvListBarangDilelang);
-        rvView.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-        rvView.setLayoutManager(layoutManager);
-
-        adapter = new ListBarangDilelangAdapter(dataset);
-        rvView.setAdapter(adapter);
+        rvView = (RecyclerView) findViewById(R.id.rv);
     }
 
     private void initDataset() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            dataset.add(new Barang(
-               "Buku",
-                    LocalDateTime.now(),
-                    LocalDateTime.now()
-            ));
-        }
+        progressBar.setVisibility(View.VISIBLE);
+        Call<List<BarangResponse>> call = RemoteDataSource.apiService.getListBarangDilelang();
+
+        call.enqueue(new Callback<List<BarangResponse>>() {
+            @Override
+            public void onResponse(Call<List<BarangResponse>> call, Response<List<BarangResponse>> response) {
+                if (response.body() != null) {
+                    for (BarangResponse barang: response.body()) {
+                        dataset.add(barang);
+                    }
+                }
+
+                progressBar.setVisibility(View.GONE);
+                rvView.setHasFixedSize(true);
+
+                layoutManager = new LinearLayoutManager(getApplicationContext());
+                rvView.setLayoutManager(layoutManager);
+
+                adapter = new ListBarangDilelangAdapter(dataset);
+                rvView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<BarangResponse>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

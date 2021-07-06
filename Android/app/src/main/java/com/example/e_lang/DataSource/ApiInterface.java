@@ -32,4 +32,7 @@ public interface ApiInterface {
 
     @GET("barang/mine")
     Call<List<BarangResponse>> getAllBarangku(@Query("userId") String id);
+
+    @GET("pelelangan/")
+    Call<List<BarangResponse>> getListBarangDilelang();
 }
