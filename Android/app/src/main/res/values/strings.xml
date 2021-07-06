@@ -39,4 +39,7 @@
     <string name="detail_barangku">Detail Barangku</string>
     <string name="status">Status</string>
     <string name="harga">Harga</string>
+    <string name="tawaran_anda">Tawaran Anda</string>
+    <string name="ajukan_tawaran">Ajukan Tawaran</string>
+    <string name="barang_dilelang">Barang Dilelang</string>
 </resources>

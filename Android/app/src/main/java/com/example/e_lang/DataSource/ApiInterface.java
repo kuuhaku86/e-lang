@@ -2,6 +2,7 @@ package com.example.e_lang.DataSource;
 
 import com.example.e_lang.DataSource.Request.RegisterRequest;
 import com.example.e_lang.DataSource.Response.BarangResponse;
+import com.example.e_lang.DataSource.Response.PenawaranBarangResponse;
 import com.example.e_lang.DataSource.Response.UserResponse;
 
 import java.util.List;
@@ -35,4 +36,8 @@ public interface ApiInterface {
 
     @GET("pelelangan/")
     Call<List<BarangResponse>> getListBarangDilelang();
+
+    @FormUrlEncoded
+    @POST("pelelangan/bid")
+    Call<PenawaranBarangResponse> bid(@Field("harga") Integer harga, @Field("userId") Integer userId, @Field("barangId") Integer barangId);
 }

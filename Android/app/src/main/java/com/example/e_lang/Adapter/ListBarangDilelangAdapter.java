@@ -62,7 +62,7 @@ public class ListBarangDilelangAdapter extends RecyclerView.Adapter<ListBarangDi
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, DetailBarangkuActivity.class);
+                Intent intent = new Intent(context, BidActivity.class);
                 intent.putExtra("barang", barang);
                 context.startActivity(intent);
             }

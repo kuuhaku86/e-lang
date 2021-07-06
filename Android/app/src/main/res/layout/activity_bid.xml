@@ -1,124 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.BidActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="266dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:src="@drawable/ic_banner_foreground"
-        android:contentDescription="@string/background" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Barang"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:context=".Activity.BidActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="357dp"
-        android:layout_height="87dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:lines="5"
-        android:maxLines="5"
-        android:text="This is the place for description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.148" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="135dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="41dp"
-        android:text="Highest Bid"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.008" />
+            <TextView
+                android:id="@+id/tv_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/barang_dilelang"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:layout_marginStart="25dp"
+                android:layout_marginVertical="20dp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="25dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="86dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:text="100000"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.008" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bid"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.266" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@color/grey"
+                    >
+                    <TextView android:gravity="left"
+                        android:text="@string/nama"
+                        android:textSize="15sp"
+                        />
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.155" />
+                    <TextView android:gravity="left"
+                        android:textSize="15sp"
+                        android:id="@+id/et_name"
+                        android:paddingLeft="15dp"
+                        />
+                </TableRow>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Bid"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.173" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView android:gravity="left"
+                        android:text="@string/harga"
+                        android:textSize="15sp"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView android:gravity="left"
+                        android:textSize="15sp"
+                        android:id="@+id/et_price"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="15dp"
+                        android:layout_width="match_parent"
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@color/grey"
+                    >
+                    <TextView android:gravity="left"
+                        android:text="@string/deskripsi"
+                        android:textSize="15sp"
+                        />
+
+                    <TextView android:gravity="left"
+                        android:textSize="15sp"
+                        android:paddingLeft="15dp"
+                        android:id="@+id/et_description" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView android:gravity="left"
+                        android:text="@string/mulai_lelang"
+                        android:textSize="15sp"
+                        />
+
+                    <TextView android:gravity="left"
+                        android:textSize="15sp"
+                        android:paddingLeft="15dp"
+                        android:id="@+id/et_lelang_start" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@color/grey"
+                    >
+                    <TextView android:gravity="left"
+                        android:text="@string/akhir_lelang"
+                        android:textSize="15sp"
+                        />
+
+                    <TextView android:gravity="left"
+                        android:textSize="15sp"
+                        android:paddingLeft="15dp"
+                        android:id="@+id/et_lelang_end" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView android:gravity="left"
+                        android:text="@string/status"
+                        android:textSize="15sp"
+                        />
+
+                    <TextView android:gravity="left"
+                        android:textSize="15sp"
+                        android:paddingLeft="15dp"
+                        android:id="@+id/et_status" />
+                </TableRow>
+            </TableLayout>
+
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="150dp" />
+
+            <EditText
+                android:id="@+id/harga"
+                android:layout_marginVertical="30dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:height="50dp"
+                android:background="@drawable/et_custom"
+                android:hint="@string/tawaran_anda"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/btn_bid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/white"
+                android:text="@string/ajukan_tawaran"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
