@@ -225,7 +225,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:background="@drawable/button_custom"
-                        android:drawableTop="@drawable/storage"
+                        android:drawableTop="@drawable/payments"
                         android:layout_marginTop="15dp"
                         android:padding="11dp" />
 
@@ -233,7 +233,7 @@
                         android:fontFamily="@font/plusjakartasans_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pelelangan \nSaya"
+                        android:text="Klaim \nBarang"
                         android:textColor="@color/dark"
                         android:textSize="25sp"
                         />

@@ -2,6 +2,7 @@ package com.example.e_lang.DataSource;
 
 import com.example.e_lang.DataSource.Request.RegisterRequest;
 import com.example.e_lang.DataSource.Response.BarangResponse;
+import com.example.e_lang.DataSource.Response.PembayaranResponse;
 import com.example.e_lang.DataSource.Response.PenawaranBarangResponse;
 import com.example.e_lang.DataSource.Response.UserResponse;
 
@@ -43,4 +44,8 @@ public interface ApiInterface {
 
     @GET("pelelangan/bidku")
     Call<List<PenawaranBarangResponse>> getAllMyBid(@Query("userId") String id);
+
+    @Multipart
+    @POST("pembayaran/ajukan")
+    Call<PembayaranResponse> createPembayaran(@Part("pembayaran") RequestBody pembayaran, @Part MultipartBody.Part file);
 }

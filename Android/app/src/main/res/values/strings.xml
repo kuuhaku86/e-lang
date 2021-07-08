@@ -45,4 +45,6 @@
     <string name="logout">Logout</string>
     <string name="penawaran_saya">Penawaran Saya</string>
     <string name="besar_tawaran">Besar Tawaran</string>
+    <string name="bayar">Bayar</string>
+    <string name="upload_bukti_bayar">Upload Bukti Bayar</string>
 </resources>

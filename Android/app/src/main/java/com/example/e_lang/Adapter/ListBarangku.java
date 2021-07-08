@@ -77,7 +77,7 @@ public class ListBarangku extends RecyclerView.Adapter<ListBarangku.ViewHolder> 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
-            date = formatter.parse(timestamp.substring(0, 9));
+            date = formatter.parse(timestamp.substring(0, 10));
         } catch (ParseException e) {
             e.printStackTrace();
         }
