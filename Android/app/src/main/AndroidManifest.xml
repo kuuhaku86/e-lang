@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ELang"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.AllMyPaymentActivity"></activity>
+        <activity android:name=".Activity.PaymentDetailActivity"></activity>
+        <activity android:name=".Activity.AllMyPaymentActivity" />
         <activity android:name=".Activity.MyBidActivity" />
         <activity android:name=".Activity.AllMyBidActivity" />
         <activity android:name=".Activity.ListBarangDilelangActivity" />

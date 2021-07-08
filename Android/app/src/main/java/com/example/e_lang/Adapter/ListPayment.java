@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.MyBidActivity;
+import com.example.e_lang.Activity.PaymentDetailActivity;
 import com.example.e_lang.DataSource.Response.PembayaranResponse;
 import com.example.e_lang.DataSource.Response.PenawaranBarangResponse;
 import com.example.e_lang.R;
@@ -60,7 +61,7 @@ public class ListPayment extends RecyclerView.Adapter<ListPayment.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, MyBidActivity.class);
+                Intent intent = new Intent(context, PaymentDetailActivity.class);
                 intent.putExtra("pembayaran", pembayaran);
                 context.startActivity(intent);
             }
