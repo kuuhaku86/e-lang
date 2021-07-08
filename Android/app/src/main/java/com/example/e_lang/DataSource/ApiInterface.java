@@ -40,4 +40,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("pelelangan/bid")
     Call<PenawaranBarangResponse> bid(@Field("harga") Integer harga, @Field("userId") Integer userId, @Field("barangId") Integer barangId);
+
+    @GET("pelelangan/bidku")
+    Call<List<PenawaranBarangResponse>> getAllMyBid(@Query("userId") String id);
 }

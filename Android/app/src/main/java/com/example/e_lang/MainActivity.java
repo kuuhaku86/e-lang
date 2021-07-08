@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.AjukanPelelanganActivity;
 import com.example.e_lang.Activity.AllBarangkuActivity;
+import com.example.e_lang.Activity.AllMyBidActivity;
 import com.example.e_lang.Activity.ListBarangDilelangActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.penawaran_saya:
+                this.allMyBid();
                 break;
 
             case R.id.ajukan_pelelangan:
@@ -110,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void listBarangDilelang() {
         Intent intent = new Intent(getApplicationContext(), ListBarangDilelangActivity.class);
+        startActivity(intent);
+    }
+
+    private void allMyBid() {
+        Intent intent = new Intent(getApplicationContext(), AllMyBidActivity.class);
         startActivity(intent);
     }
 }

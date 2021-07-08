@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ELang"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.ListBarangDilelangActivity"></activity>
+        <activity android:name=".Activity.MyBidActivity"></activity>
+        <activity android:name=".Activity.AllMyBidActivity" />
+        <activity android:name=".Activity.ListBarangDilelangActivity" />
         <activity android:name=".Activity.DetailBarangkuActivity" />
         <activity android:name=".Activity.AllBarangkuActivity" />
         <activity android:name=".Activity.AjukanPelelanganActivity" />

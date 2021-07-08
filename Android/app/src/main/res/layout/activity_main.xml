@@ -208,7 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
                 android:paddingTop="10dp"
-                android:paddingLeft="35dp"
+                android:paddingLeft="10dp"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
@@ -225,7 +225,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:background="@drawable/button_custom"
-                        android:drawableTop="@drawable/bid"
+                        android:drawableTop="@drawable/storage"
                         android:layout_marginTop="15dp"
                         android:padding="11dp" />
 

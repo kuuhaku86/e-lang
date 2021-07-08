@@ -1,5 +1,6 @@
 package com.example.e_lang.DataSource.Response;
 
+import com.example.e_lang.Entity.Barang;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -20,6 +21,9 @@ public class PenawaranBarangResponse implements Serializable {
 
 	@SerializedName("userId")
 	private String userId;
+
+	@SerializedName("barang")
+	private BarangResponse barang;
 
 	public void setHarga(String harga){
 		this.harga = harga;
@@ -59,6 +63,14 @@ public class PenawaranBarangResponse implements Serializable {
 
 	public String getUserId(){
 		return userId;
+	}
+
+	public void setBarang(BarangResponse barang){
+		this.barang = barang;
+	}
+
+	public BarangResponse getBarang(){
+		return barang;
 	}
 
 	@Override
