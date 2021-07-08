@@ -48,4 +48,7 @@ public interface ApiInterface {
     @Multipart
     @POST("pembayaran/ajukan")
     Call<PembayaranResponse> createPembayaran(@Part("pembayaran") RequestBody pembayaran, @Part MultipartBody.Part file);
+
+    @GET("pembayaran/mine")
+    Call<List<PembayaranResponse>> getAllPayment(@Query("userId") String id);
 }

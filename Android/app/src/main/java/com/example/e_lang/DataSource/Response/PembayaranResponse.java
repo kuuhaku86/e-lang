@@ -2,7 +2,9 @@ package com.example.e_lang.DataSource.Response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PembayaranResponse{
+import java.io.Serializable;
+
+public class PembayaranResponse implements Serializable {
 
 	@SerializedName("buktiPembayaran")
 	private String buktiPembayaran;

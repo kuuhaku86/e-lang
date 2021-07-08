@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.AjukanPelelanganActivity;
 import com.example.e_lang.Activity.AllBarangkuActivity;
 import com.example.e_lang.Activity.AllMyBidActivity;
+import com.example.e_lang.Activity.AllMyPaymentActivity;
 import com.example.e_lang.Activity.ListBarangDilelangActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.barang_dilelang,
                 R.id.penawaran_saya,
                 R.id.ajukan_pelelangan,
+                R.id.klaim_pelelangan,
         };
 
         for (int id: arrayId) {
@@ -78,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.ajukan_pelelangan:
                 this.ajukanPelelangan();
+                break;
+
+            case R.id.klaim_pelelangan:
+                this.allMyPayment();
                 break;
         }
     }
@@ -117,6 +123,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void allMyBid() {
         Intent intent = new Intent(getApplicationContext(), AllMyBidActivity.class);
+        startActivity(intent);
+    }
+
+    private void allMyPayment() {
+        Intent intent = new Intent(getApplicationContext(), AllMyPaymentActivity.class);
         startActivity(intent);
     }
 }
