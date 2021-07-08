@@ -46,7 +46,6 @@ null -> empty, in response -> "Attribute":null
     "imageUrl": String,
     "created_at": Date,
     "updated_at": Date,
-    "penawaranBarangList": List<PenawaranBarang>
 }
 ```
 ### Penawaran Barang :
@@ -56,7 +55,8 @@ null -> empty, in response -> "Attribute":null
     "harga": Long,
     "userId": Long,
     "created_at": Date,
-    "updated_at": Date
+    "updated_at": Date,
+    "barang": Barang
 }
 ```
 ### Pembayaran :
@@ -67,10 +67,10 @@ null -> empty, in response -> "Attribute":null
     "buktiPembayaran": String,
     "userId": Long,
     "adminId": Long,
-    "deadline": Date,
     "penawaranId": Long,
     "created_at": Date,
-    "updated_at": Date
+    "updated_at": Date,
+    "barang": Barang
 }
 ```
 
