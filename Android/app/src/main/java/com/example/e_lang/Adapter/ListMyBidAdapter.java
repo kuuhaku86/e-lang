@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.e_lang.Activity.DetailBarangkuActivity;
+import com.example.e_lang.Activity.MyBidActivity;
 import com.example.e_lang.DataSource.Response.BarangResponse;
 import com.example.e_lang.DataSource.Response.PenawaranBarangResponse;
 import com.example.e_lang.R;
@@ -60,8 +61,8 @@ public class ListMyBidAdapter extends RecyclerView.Adapter<ListMyBidAdapter.View
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, DetailBarangkuActivity.class);
-                intent.putExtra("penawaranBarang", penawaranBarang.getBarang());
+                Intent intent = new Intent(context, MyBidActivity.class);
+                intent.putExtra("penawaranBarang", penawaranBarang);
                 context.startActivity(intent);
             }
         });

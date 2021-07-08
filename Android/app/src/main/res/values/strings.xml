@@ -43,4 +43,6 @@
     <string name="ajukan_tawaran">Ajukan Tawaran</string>
     <string name="barang_dilelang">Barang Dilelang</string>
     <string name="logout">Logout</string>
+    <string name="penawaran_saya">Penawaran Saya</string>
+    <string name="besar_tawaran">Besar Tawaran</string>
 </resources>
