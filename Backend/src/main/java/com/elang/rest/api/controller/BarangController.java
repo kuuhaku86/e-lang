@@ -20,9 +20,14 @@ public class BarangController {
 	BarangService barangService;
 	
 	// buat barang baru
-	@PostMapping(value = "/create", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<?> createBarang(@RequestPart("barang") String barang, @RequestPart("kategoriList") String kategoriList, @RequestPart("image") MultipartFile image){
-		return barangService.createBarang(barang, kategoriList, image);
+//	@PostMapping(value = "/create", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+//	public ResponseEntity<?> createBarang(@RequestPart("barang") String barang, @RequestPart("kategoriList") String kategoriList, @RequestPart("image") MultipartFile image){
+//		return barangService.createBarang(barang, kategoriList, image);
+//	}
+	
+	@PostMapping(value = "/create", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+	public ResponseEntity<?> createBarang(@RequestPart("barang") String barang, @RequestPart("image") MultipartFile image){
+		return barangService.createBarang(barang, image);
 	}
 	
 	// lihat 1 barang
@@ -32,9 +37,9 @@ public class BarangController {
 	}
 	
 	// edit/update barang
-	@PostMapping(value = "/update", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<?> updateBarang(@RequestPart("barang") String barang, @RequestPart("kategoriList") String kategoriList, @RequestPart("image") MultipartFile image){
-		return barangService.updateBarang(barang, kategoriList, image);
+	@PostMapping(value = "/update", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+	public ResponseEntity<?> updateBarang(@RequestPart("barang") String barang, @RequestPart("image") MultipartFile image){
+		return barangService.updateBarang(barang, image);
 		
 	}
 	

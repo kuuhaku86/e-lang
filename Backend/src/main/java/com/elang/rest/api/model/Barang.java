@@ -29,6 +29,7 @@ public class Barang implements Serializable {
 	
 	private String status;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date lelangStart;
 	
 	private Date lelangFinished;
@@ -47,11 +48,11 @@ public class Barang implements Serializable {
 	@LastModifiedDate
 	private Date updated_at;
 	
-	@ManyToMany(targetEntity = Kategori.class,cascade = CascadeType.ALL )
-    private List<Kategori> kategoriList;
+//	@ManyToMany(targetEntity = Kategori.class,cascade = CascadeType.ALL )
+//    private List<Kategori> kategoriList;
 	
-	@ManyToMany(targetEntity = PenawaranBarang.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    private List<PenawaranBarang> penawaranBarangList;
+//	@ManyToMany(targetEntity = PenawaranBarang.class,cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+//    private List<PenawaranBarang> penawaranBarangList;
 
 	public Long getUserId() {
 		return userId;
@@ -65,21 +66,21 @@ public class Barang implements Serializable {
 		return id;
 	}
 
-	public List<Kategori> getKategoriList() {
-		return kategoriList;
-	}
-
-	public void setKategoriList(List<Kategori> kategoriList) {
-		this.kategoriList = kategoriList;
-	}
-
-	public List<PenawaranBarang> getPenawaranBarangList() {
-		return penawaranBarangList;
-	}
-
-	public void setPenawaranBarangList(List<PenawaranBarang> penawaranBarangList) {
-		this.penawaranBarangList = penawaranBarangList;
-	}
+//	public List<Kategori> getKategoriList() {
+//		return kategoriList;
+//	}
+//
+//	public void setKategoriList(List<Kategori> kategoriList) {
+//		this.kategoriList = kategoriList;
+//	}
+//
+//	public List<PenawaranBarang> getPenawaranBarangList() {
+//		return penawaranBarangList;
+//	}
+//
+//	public void setPenawaranBarangList(List<PenawaranBarang> penawaranBarangList) {
+//		this.penawaranBarangList = penawaranBarangList;
+//	}
 
 	public void setId(Long id) {
 		this.id = id;

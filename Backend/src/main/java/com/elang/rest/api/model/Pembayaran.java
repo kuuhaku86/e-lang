@@ -26,7 +26,7 @@ public class Pembayaran implements Serializable {
 	
 	private Long adminId;
 	
-	private Date deadline;
+//	private Date deadline;
 	
 	private Long penawaranId;
 	
@@ -39,6 +39,18 @@ public class Pembayaran implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updated_at;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "barang_id", referencedColumnName = "id")
+    private Barang barang;
+
+	public Barang getBarang() {
+		return barang;
+	}
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
 	
 	
 	public Long getUserId() {
@@ -89,13 +101,13 @@ public class Pembayaran implements Serializable {
 		this.buktiPembayaran = buktiPembayaran;
 	}
 
-	public java.util.Date getDeadline() {
-		return deadline;
-	}
-
-	public void setDeadline(java.util.Date deadline) {
-		this.deadline = deadline;
-	}
+//	public java.util.Date getDeadline() {
+//		return deadline;
+//	}
+//
+//	public void setDeadline(java.util.Date deadline) {
+//		this.deadline = deadline;
+//	}
 
 	public Date getCreated_at() {
 		return created_at;

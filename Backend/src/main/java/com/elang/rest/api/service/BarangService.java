@@ -35,9 +35,9 @@ public class BarangService {
 	
 	ObjectMapper objectMapper = new ObjectMapper();
 	
-	public ResponseEntity<?> createBarang(String stringBarang, String stringList, MultipartFile image) {
+	public ResponseEntity<?> createBarang(String stringBarang, MultipartFile image) {
 		Barang newBarang = stringToBarang(stringBarang);
-		newBarang.setKategoriList( checkKategori( stringToList(stringList) ) );
+//		newBarang.setKategoriList( checkKategori( stringToList(stringList) ) );
 				
 		if( !userService.checkUser(newBarang.getUserId()) )
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -55,15 +55,15 @@ public class BarangService {
     		HttpStatus.OK);
 	}
 	
-	public ResponseEntity<?> updateBarang(String stringBarang, String stringList, MultipartFile image){
+	public ResponseEntity<?> updateBarang(String stringBarang, MultipartFile image){
 		Barang barang = stringToBarang(stringBarang);
-		barang.setKategoriList( checkKategori( stringToList(stringList) ) );
+//		barang.setKategoriList( checkKategori( stringToList(stringList) ) );
 		
 		if( barangRepository.findById(barang.getId()).isEmpty())
 			return new ResponseEntity<>(
 					HttpStatus.NOT_FOUND);
 		
-		if( barang.getStatus().equals("processed") ) 
+		if( !barang.getStatus().equals("new") ) 
 			return new ResponseEntity<>(
 					HttpStatus.BAD_REQUEST);
 		
@@ -76,7 +76,7 @@ public class BarangService {
 			return new ResponseEntity<>(
 					HttpStatus.NOT_FOUND);
 		
-		if( barangRepository.getOne(id).getStatus().equals("processed") ) 
+		if( !barangRepository.getOne(id).getStatus().equals("new") ) 
 			return new ResponseEntity<>(
 					HttpStatus.BAD_REQUEST);
 		barangRepository.deleteById(id);
@@ -105,7 +105,7 @@ public class BarangService {
 					HttpStatus.NOT_FOUND);
 		
 		Barang barang = barangRepository.getOne(id);
-		barang.setStatus("approved");
+		barang.setStatus("verified");
 		barangRepository.save(barang);
 		
 		return new ResponseEntity<>(
@@ -118,7 +118,7 @@ public class BarangService {
 	
 	private ResponseEntity<?> saveBarang(Barang barang, MultipartFile image) {
 		barang.setStatus("new");
-		barang.setPenawaranBarangList( new ArrayList<PenawaranBarang>() );
+//		barang.setPenawaranBarangList( new ArrayList<PenawaranBarang>() );
 		
         Barang savedBarang = barangRepository.save(barang);
         

@@ -32,6 +32,18 @@ public class PenawaranBarang implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date updated_at;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "barang_id", referencedColumnName = "id")
+    private Barang barang;
+
+	public Barang getBarang() {
+		return barang;
+	}
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
 
 	public Long getId() {
 		return id;

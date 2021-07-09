@@ -1,6 +1,8 @@
 package com.elang.rest.api.service;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -34,8 +36,9 @@ public class PelelanganService {
 	UserService userService;
 	
 	public ResponseEntity<?> getAllBarangLelang(){
+		Date now = new Date();
 		return new ResponseEntity<>(
-				barangRepository.findBystatus("processed"),
+				barangRepository.getPelelangan( now,now ),
 				HttpStatus.OK);
 	}
 	
@@ -44,7 +47,7 @@ public class PelelanganService {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 		return new ResponseEntity<>(
-				barangRepository.findByPenawaranBarangList_UserId(userId),
+				penawaranRepository.findByUserId(userId),
 				HttpStatus.OK);
 	}
 	
@@ -55,17 +58,20 @@ public class PelelanganService {
 		
 		Barang barang = barangRepository.getOne(request.getBarangId()); 
 		
-		if( !barang.getStatus().equals("processed") )
+		if( barang.getStatus().equals("new") )
 			return new ResponseEntity<>(
 					HttpStatus.BAD_REQUEST);
 		
+		barang.setHargaAwal(request.getHarga());
+		barangRepository.save(barang);
 		PenawaranBarang penawaran = new PenawaranBarang();
 		
 		penawaran.setHarga(request.getHarga());
 		penawaran.setUserId(request.getUserId());
+		penawaran.setBarang(barang);
 		
 		PenawaranBarang savedPenawaran = penawaranRepository.save(penawaran);
-		barang.getPenawaranBarangList().add(savedPenawaran);
+//		barang.getPenawaranBarangList().add(savedPenawaran);
 		
 		barangRepository.save(barang);
 		return new ResponseEntity<>(
