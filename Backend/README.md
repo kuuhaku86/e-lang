@@ -179,7 +179,7 @@ Body Requirement :
     userId:Long
 ```
 
-Response OK : ` List<Penawaran> `
+Response OK : ` List<Barang> `
 
 Response Not Found : User ID not exist
 
@@ -196,7 +196,7 @@ Request `Get /pelelangan/`
 
 No Requirement
 
-Response OK : `List<Barang>`
+Response OK : `List<Penawaran>`
 
 
 ### Bid Pelelangan
