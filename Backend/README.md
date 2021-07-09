@@ -179,7 +179,7 @@ Body Requirement :
     userId:Long
 ```
 
-Response OK : ` List<Barang> `
+Response OK : ` List<Penawaran> `
 
 Response Not Found : User ID not exist
 
